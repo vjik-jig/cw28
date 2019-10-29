@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        name: "ivan",
+        surname: "petrov"
+      };
+
+      const myMap = new Map([[1, "a"], [2, "b"], [3, "c"]]);
+
+      const getKeys = function(inputVar) {
+        const res = [];
+        if (inputVar instanceof Map) {
+          inputVar.forEach(function(value, key) {
+          res.push(key);
+          })
+        } else {
+          for (key in inputVar) {
+            if (inputVar.hasOwnProperty(key)) {
+              res.push(key);
+            }
+          }
+        }        
+        return res;
+      };
+      console.log(getKeys(obj));
+
+      const getValues = function(inputVar) {
+        const res = [];
+        if (inputVar instanceof Map) {
+          inputVar.forEach(function(value, key) {
+          res.push(value);
+          })
+        } else {
+          for (key in inputVar) {          
+            if (inputVar.hasOwnProperty(key)) {
+              res.push(inputVar[key]);
+            }
+          }
+        }
+        return res;
+      };
+
+      console.log(getValues(myMap));
+
+      const getEntries = function(inputVar) {
+        let res = [];         
+        if (inputVar instanceof Map) {
+          res = Array.from(inputVar);           
+        } else {       
+          for (key in inputVar) {
+            const innerRes = [];                  
+            if (inputVar.hasOwnProperty(key)) {              
+              innerRes.push(key);
+              innerRes.push(inputVar[key]);
+              res.push(innerRes);
+            }
+          }
+        };
+        return res;        
+      };
+
+      console.log(getEntries(myMap));
+      
+
+    </script>
+  </body>
+</html>
